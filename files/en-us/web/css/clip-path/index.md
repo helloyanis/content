@@ -232,7 +232,11 @@ We include a {{htmlElement("div")}} element that we will style along with an SVG
 
 ### The various value types
 
-This example includes a picker wherein you can select the different
+This example demonstrates the various values of the `clip-path` property.
+
+#### HTML
+
+The HTML includes an image and a `<clipPath>` in the shape of a star. We also included a {{htmlelement("select")}} element which provides various optional values for the `clip-path` property.
 
 ```html
 <img id="clipped" src="mdn.svg" alt="MDN logo" />
@@ -247,7 +251,7 @@ This example includes a picker wherein you can select the different
 <select id="clipPath">
   <option value="none">none</option>
   <option value="circle(100px at 110px 100px)">circle</option>
-  <option value="url(#star)" selected>cross</option>
+  <option value="url(#star)" selected>star</option>
   <option value="inset(20px round 20px)">inset</option>
   <option value="rect(10px 10px 180px 220px round 20px)">rect</option>
   <option value="xywh(0 20% 90% 67% round 0 0 5% 5px)">xywh</option>
@@ -263,6 +267,8 @@ This example includes a picker wherein you can select the different
 
 #### CSS
 
+The initial rendering includes the star as the `clip-path` source.
+
 ```css
 #clipped {
   margin-bottom: 20px;
@@ -270,14 +276,20 @@ This example includes a picker wherein you can select the different
 }
 ```
 
-```js hidden
+#### JavaScript
+
+When you select a new option, an event handler updates the value of the `clip-path`.
+
+```js
 const clipPathSelect = document.getElementById("clipPath");
 clipPathSelect.addEventListener("change", (evt) => {
   const x = evt.target.value;
   document.getElementById("clipped").style.clipPath = x;
   log(`clip-path: ${x};`);
 });
+```
 
+```js hidden
 function log(text) {
   const logElement = document.querySelector("#log");
   logElement.innerText = `${text}`;
@@ -299,9 +311,9 @@ function log(text) {
 
 ## See also
 
-- [Introduction to CSS clipping](/en-US/docs/Web/CSS/CSS_masking/CSS_clipping)
 - {{CSSxRef("clip-rule")}}
 - {{CSSxRef("mask")}}
 - {{CSSxRef("filter")}}
+- [Introduction to CSS clipping](/en-US/docs/Web/CSS/CSS_masking/CSS_clipping)
 - SVG {{SVGAttr("clip-path")}} attribute
 - [Applying SVG effects to HTML content](/en-US/docs/Web/SVG/Guides/Applying_SVG_effects_to_HTML_content)
